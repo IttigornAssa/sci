@@ -1,0 +1,123 @@
+<!DOCTYPE html>	
+{% csrf_token %}
+{{ form }}
+{% load staticfiles %}
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+
+<head>
+
+</head>
+
+
+<body>
+
+<div class= "first">
+	<a href= "{% url 'home' %}">
+    <img class="bgFirst" src="{% static 'a.png' %}" width="400" height="80" align="middle"></img>
+  </a>
+</div>
+
+
+<div>
+	
+<h1>กรุณาใส่ข้อมูลบุคคลากร / หน่วยงาน</h1>
+<div class="divSearch">
+	<form method="GET" action="">
+	  <input placeholder = "ชื่อหน่วยงาน/บุคคลากร" name="q" autocomplete="off" value= {{ request.GET.q }}>
+	  <input class="imgg" type="image" src="{% static 'img1.png' %}" alt="Submit Form" />
+  </form>
+</div>
+</div>
+
+<br><br><br>
+<section>
+<table style="width:60%">
+  <tr>
+    <th>ชื่อ</th> 
+    <th>ผู้แต่ง</th>
+    <th>บทคัดย่อ</th>
+  </tr>
+  {% for p in object_list %}
+    <tr>
+	  <td>{{ p.name }}</td>
+      <td><a id = 'author' href="author" value = '{{p.author.pk}}'>{{p.author.name}} </a></td>
+      <td>{{ p.abstract }}</td>
+    </tr>
+	{% empty %}
+		<div class="jumbotron">
+		  <h1>No Research yet!</h1>  
+		</div>
+  {% endfor %}
+
+ </table>
+
+</section>
+</body>
+</html>
+<style >
+body{
+	margin:0;
+}
+table{
+	margin-left: auto;
+	margin-right: auto;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+	text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #990000;
+    color: white;
+}
+h1{
+	text-align: center;
+	color: #990000;
+}
+input{
+/*	margin-left: 35%;*/
+	height: 40px;
+	width: 300px;
+
+}
+button{
+	margin-top: auto;
+	height: 45px;
+	width: 38px;
+	vertical-align:middle;
+}
+.first{
+	background: #990000;
+	height: 100px;
+}
+.divSearch{
+	display: inline;
+	text-align: center;
+	vertical-align:middle;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: gray;
+    opacity: 1; /* Firefox */
+}
+.imgg{
+	width: 30px;
+	height: 30px;
+	vertical-align:middle;
+}
+
+
+</style>
